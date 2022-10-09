@@ -3,7 +3,8 @@ import streamlink
 import subprocess as sp
 
 def check_streams(org):
-    streams_json = requests.get("https://holodex.net/api/v2/live?org={}".format(org))
+    api = "https://holodex.net/api/v2/live?org={}".format(org)
+    streams_json = requests.get(api)
     live = []
     upcoming = []
     for stream in streams_json.json():

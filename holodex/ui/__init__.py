@@ -19,7 +19,7 @@ class Stream(Widget):
             "[b blink red]LIVE[/]" if stream_info["status"] == "live" else "Upcoming"
         )
 
-        super().__init__(name)
+        super().__init__(self.title)
 
     def render(self) -> Panel:
         renderable: RenderableType = "[b]Title:[/b]\t{}\n[b]Member:[/b]\t{}\n[b]Topic:[/b]\t{}\n[b]Status:[/b]\t{}".format(
@@ -32,7 +32,7 @@ class Stream(Widget):
 
 
 class ListStreams(App):
-    def __init__(self, org, screen: bool = True, driver_class: Type[Driver] = None, log: str = "", log_verbosity: int = 1, title: str = "Textual Application"):
+    def __init__(self, org, screen: bool = True, driver_class: Type[Driver] = None, log: str = "", log_verbosity: int = 1, title: str = "Holodex"):
         self.org = org
 
         super().__init__(screen, driver_class, log, log_verbosity, title)

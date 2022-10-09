@@ -9,6 +9,7 @@ def get_args():
 
 def run():
     args = get_args()
+
     ListStreams.run(org=args.group)
 
 
