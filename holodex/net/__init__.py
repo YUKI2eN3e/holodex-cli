@@ -16,8 +16,6 @@ for stream in streams_json.json():
 def open_stream(url, resolution="720p"):
     resolutions = streamlink.streams(url)
     if resolution in resolutions.keys():
-        sp.run(
-            ["ffplay", resolutions[resolution].url, "-fs"], capture_output=True
-        )
+        sp.run(["ffplay", resolutions[resolution].url, "-fs"], capture_output=True)
     else:
         sp.run(["ffplay", resolutions["best"].url, "-fs"], capture_output=True)

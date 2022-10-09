@@ -4,6 +4,12 @@ version = "0.1.0"
 description = "Holodex CLI for watching live streams"
 authors = []
 readme = "README.md"
+packages = [
+	{ include = "holodex", from = "." }
+]
+
+[tool.poetry.scripts]
+holodex = "holodex.__main__:run()"
 
 [tool.poetry.dependencies]
 python = "^3.9"
