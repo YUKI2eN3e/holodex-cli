@@ -14,7 +14,7 @@ class Stream(Widget):
         net.live_i += 1
         self.title = stream_info["title"]
         self.member = stream_info["channel"]["english_name"]
-        self.topic = stream_info["topic_id"].title()
+        self.topic = stream_info["topic_id"].title().replace('_',' ')
         self.url = "https://youtu.be/{}".format(stream_info["id"])
 
         super().__init__(name)

@@ -17,7 +17,7 @@ def open_stream(url, resolution="720p"):
     resolutions = streamlink.streams(url)
     if resolution in resolutions.keys():
         sp.run(
-            ["mpv", resolutions[resolution].url], capture_output=True
+            ["ffplay", resolutions[resolution].url, "-fs"], capture_output=True
         )
     else:
-        sp.run(["mpv", resolutions["best"].url], capture_output=True)
+        sp.run(["ffplay", resolutions["best"].url, "-fs"], capture_output=True)
