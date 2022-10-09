@@ -5,6 +5,8 @@ from textual.widget import Widget
 from textual.events import Click
 from rich.console import RenderableType
 from .. import net
+from typing import Type
+from textual.driver import Driver
 
 
 class Stream(Widget):
@@ -30,10 +32,15 @@ class Stream(Widget):
 
 
 class ListStreams(App):
+    def __init__(self, org, screen: bool = True, driver_class: Type[Driver] = None, log: str = "", log_verbosity: int = 1, title: str = "Textual Application"):
+        self.org = org
+
+        super().__init__(screen, driver_class, log, log_verbosity, title)
+
     async def on_load(self) -> None:
         """Bind keys here."""
         await self.bind("q", "quit", "Quit")
 
     async def on_mount(self) -> None:
-        streams = (Stream(stream_info) for stream_info in net.live)
+        streams = (Stream(stream_info) for stream_info in net.check_streams(self.org)["live"])
         await self.view.dock(*streams, edge="top")
