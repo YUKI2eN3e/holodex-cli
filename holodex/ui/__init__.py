@@ -13,13 +13,17 @@ class Stream(Widget):
     def __init__(self, stream_info, name: str = None) -> None:
         self.title = stream_info["title"]
         self.member = stream_info["channel"]["english_name"]
-        self.topic = stream_info["topic_id"].title().replace("_", " ")
+        self.topic = str()
+        try:
+            self.topic = stream_info["topic_id"].title().replace("_", " ")
+        except KeyError:
+            self.topic = "Chat"
         self.url = "https://youtu.be/{}".format(stream_info["id"])
         self.status = (
             "[b blink red]LIVE[/]" if stream_info["status"] == "live" else "Upcoming"
         )
 
-        super().__init__(self.title)
+        super().__init__(name = self.title)
 
     def render(self) -> Panel:
         renderable: RenderableType = "[b]Title:[/b]\t{}\n[b]Member:[/b]\t{}\n[b]Topic:[/b]\t{}\n[b]Status:[/b]\t{}".format(
