@@ -46,5 +46,8 @@ class ListStreams(App):
         await self.bind("q", "quit", "Quit")
 
     async def on_mount(self) -> None:
-        streams = (Stream(stream_info) for stream_info in net.check_streams(self.org)["live"])
+        holodexResponce = net.check_streams(self.org)
+        streams = (Stream(stream_info) for stream_info in (
+            holodexResponce["live"] if len(holodexResponce["live"]) > 0 else holodexResponce["upcoming"]
+        ))
         await self.view.dock(*streams, edge="top")
