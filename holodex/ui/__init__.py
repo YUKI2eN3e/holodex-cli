@@ -7,6 +7,7 @@ from rich.console import RenderableType
 from .. import net
 from typing import Type
 from textual.driver import Driver
+from ..util import time
 
 
 class Stream(Widget):
@@ -20,7 +21,7 @@ class Stream(Widget):
             self.topic = "Chat"
         self.url = "https://youtu.be/{}".format(stream_info["id"])
         self.status = (
-            "[b blink red]LIVE[/]" if stream_info["status"] == "live" else "Upcoming"
+            "[b blink red]LIVE[/]" if stream_info["status"] == "live" else "Upcoming in: {}".format(str(time.time_until(stream_info["start_scheduled"])).split('.')[0])
         )
 
         super().__init__(name = self.title)
