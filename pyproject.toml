@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "holodex-cli"
-version = "0.1.0"
+version = "0.1.1"
 description = "Holodex CLI for watching live streams"
 authors = []
 readme = "README.md"
@@ -12,7 +12,7 @@ packages = [
 holodex = "holodex.__main__:run"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = ">=3.9, <=3.10"
 requests = "^2.28.1"
 textual = "^0.1.18"
 streamlink = "^5.0.1"
