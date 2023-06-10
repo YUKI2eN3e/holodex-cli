@@ -1,5 +1,5 @@
 from rich.panel import Panel
-from textual.app import App
+from textual.app import App, CSSPathType, ComposeResult
 from textual.reactive import Reactive
 from textual.widget import Widget
 from textual.events import Click
@@ -8,7 +8,9 @@ from .. import net
 from typing import Type
 from textual.driver import Driver
 from ..util import time
-
+from textual.containers import ScrollableContainer, Container
+from textual.binding import Binding
+from textual.widgets import Header, Footer
 
 class Stream(Widget):
     def __init__(self, stream_info, name: str = None) -> None:
@@ -41,24 +43,22 @@ class Stream(Widget):
 
 
 class ListStreams(App):
+    TITLE = "Holodex"
+    BINDINGS = [
+        ("d", "toggle_dark", "Toggle dark mode"),
+        Binding("ctrl+c,ctrl+q", "app.quit", "Quit", show=True),
+    ]
     def __init__(
         self,
         org,
-        screen: bool = True,
         driver_class: Type[Driver] = None,
-        log: str = "",
-        log_verbosity: int = 1,
-        title: str = "Holodex",
+        css_path: CSSPathType = "styles.css",
+        watch_css: bool = False
     ):
         self.org = org
+        super().__init__(driver_class, css_path, watch_css)
 
-        super().__init__(screen, driver_class, log, log_verbosity, title)
-
-    async def on_load(self) -> None:
-        """Bind keys here."""
-        await self.bind("q", "quit", "Quit")
-
-    async def on_mount(self) -> None:
+    def compose(self) -> ComposeResult:
         holodexResponce = net.check_streams(self.org)
         streams = (
             Stream(stream_info)
@@ -68,4 +68,8 @@ class ListStreams(App):
                 else holodexResponce["upcoming"]
             )
         )
-        await self.view.dock(*streams, edge="top")
+        yield Container(
+            Header(name=self.TITLE),
+            ScrollableContainer(*streams),
+            Footer()
+        )

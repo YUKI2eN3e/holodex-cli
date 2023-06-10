@@ -2,7 +2,6 @@
 from .ui import ListStreams
 import argparse
 
-
 def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -27,7 +26,8 @@ def run():
     elif group.title() == "Indie":
         group = "Independents"
 
-    ListStreams.run(org=group)
+    app = ListStreams(org=group)
+    app.run()
 
 
 if __name__ == "__main__":
