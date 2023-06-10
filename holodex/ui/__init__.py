@@ -46,7 +46,7 @@ class ListStreams(App):
     TITLE = "Holodex"
     BINDINGS = [
         ("d", "toggle_dark", "Toggle dark mode"),
-        Binding("ctrl+c,ctrl+q", "app.quit", "Quit", show=True),
+        Binding("q,ctrl+c", "app.quit", "Quit", show=True, key_display="Q"),
     ]
     def __init__(
         self,
