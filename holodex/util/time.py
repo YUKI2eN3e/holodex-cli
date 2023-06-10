@@ -1,7 +1,8 @@
 from datetime import datetime, timezone
 from dateutil import parser as dateParser
 
-def time_until(futureTime:str):
+
+def time_until(futureTime: str):
     """Get the about of time until futureTime
 
     Args:

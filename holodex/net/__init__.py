@@ -3,13 +3,6 @@ import streamlink
 import subprocess as sp
 import holodex.net.apikey as apikey
 
-"""
-import os
-x_apikey = ""
-root_dir = '\\'.join(os.path.abspath(os.path.curdir).split('\\')[0:-1])
-with open(f"{root_dir}\\.apikey", "r", encoding="utf8") as file:
-    x_apikey = file.readline() 
-"""
 
 def check_streams(org):
     api = "https://holodex.net/api/v2/live?org={}".format(org)
