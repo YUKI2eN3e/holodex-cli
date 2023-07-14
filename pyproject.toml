@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "holodex-cli"
-version = "0.1.2"
+version = "0.1.3"
 description = "Holodex CLI for watching live streams"
 authors = []
 readme = "README.md"
