@@ -22,6 +22,11 @@ streamlink = "^5.0.1"
 python-dateutil = "^2.8.2"
 
 
+[tool.poetry.group.dev.dependencies]
+black = "^23.7.0"
+isort = "^5.12.0"
+pre-commit = "^3.3.3"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

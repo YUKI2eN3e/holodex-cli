@@ -1,6 +1,8 @@
+import subprocess as sp
+
 import requests
 import streamlink
-import subprocess as sp
+
 import holodex.net.apikey as apikey
 
 

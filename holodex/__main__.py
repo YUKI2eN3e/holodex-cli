@@ -1,13 +1,21 @@
 #!/usr/bin/env python3
-from .ui import ListStreams
 import argparse
+from dataclasses import dataclass
 
-def get_args():
+from holodex.ui import ListStreams
+
+
+@dataclass
+class CliArgs:
+    group: str
+
+
+def get_args() -> CliArgs:
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "-g", "--group", help="The VTuber group you want to watch", default="Hololive"
     )
-    return parser.parse_args()
+    return CliArgs(**vars(parser.parse_args()))
 
 
 def run():

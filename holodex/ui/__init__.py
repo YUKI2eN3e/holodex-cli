@@ -1,16 +1,19 @@
+from typing import Type
+
+from rich.console import RenderableType
 from rich.panel import Panel
-from textual.app import App, CSSPathType, ComposeResult
+from textual.app import App, ComposeResult, CSSPathType
+from textual.binding import Binding
+from textual.containers import Container, ScrollableContainer
+from textual.driver import Driver
+from textual.events import Click
 from textual.reactive import Reactive
 from textual.widget import Widget
-from textual.events import Click
-from rich.console import RenderableType
-from .. import net
-from typing import Type
-from textual.driver import Driver
-from ..util import time
-from textual.containers import ScrollableContainer, Container
-from textual.binding import Binding
-from textual.widgets import Header, Footer
+from textual.widgets import Footer, Header
+
+from holodex import net
+from holodex.util import time
+
 
 class Stream(Widget):
     def __init__(self, stream_info, name: str = None) -> None:
@@ -48,12 +51,13 @@ class ListStreams(App):
         ("d", "toggle_dark", "Toggle dark mode"),
         Binding("q,ctrl+c", "app.quit", "Quit", show=True, key_display="Q"),
     ]
+
     def __init__(
         self,
         org,
         driver_class: Type[Driver] = None,
         css_path: CSSPathType = "styles.css",
-        watch_css: bool = False
+        watch_css: bool = False,
     ):
         self.org = org
         super().__init__(driver_class, css_path, watch_css)
@@ -69,7 +73,5 @@ class ListStreams(App):
             )
         )
         yield Container(
-            Header(name=self.TITLE),
-            ScrollableContainer(*streams),
-            Footer()
+            Header(name=self.TITLE), ScrollableContainer(*streams), Footer()
         )
