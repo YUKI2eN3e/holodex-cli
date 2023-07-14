@@ -59,13 +59,13 @@ class ListStreams(App):
         super().__init__(driver_class, css_path, watch_css)
 
     def compose(self) -> ComposeResult:
-        holodexResponce = net.check_streams(self.org)
+        holodex_response = net.check_streams(self.org)
         streams = (
             Stream(stream_info)
             for stream_info in (
-                holodexResponce["live"]
-                if len(holodexResponce["live"]) > 0
-                else holodexResponce["upcoming"]
+                holodex_response["live"] + holodex_response["upcoming"]
+                if len(holodex_response["live"]) > 0
+                else holodex_response["upcoming"]
             )
         )
         yield Container(
