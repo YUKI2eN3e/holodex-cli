@@ -12,7 +12,7 @@ else:
 
 import os
 
-SEP = "\\" if os.sys.platform == "win32" else "/"
+SEP = os.path.sep
 
 
 def get_user_config_path() -> str:
