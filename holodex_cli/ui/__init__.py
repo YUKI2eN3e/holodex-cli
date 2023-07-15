@@ -11,12 +11,12 @@ from textual.reactive import Reactive
 from textual.widget import Widget
 from textual.widgets import Footer, Header
 
-from holodex import net
-from holodex.util import time
+from holodex_cli import net
+from holodex_cli.util import time
 
 
 class Stream(Widget):
-    def __init__(self, stream_info, name: str = None) -> None:
+    def __init__(self, stream_info, resolution: str, name: str = None) -> None:
         self.title = stream_info["title"]
         self.member = stream_info["channel"]["english_name"]
         self.topic = str()
@@ -32,6 +32,7 @@ class Stream(Widget):
                 str(time.time_until(stream_info["start_scheduled"])).split(".")[0]
             )
         )
+        self.resolution = resolution if resolution[-1] == "p" else resolution + "p"
 
         super().__init__(name=self.title)
 
@@ -42,7 +43,7 @@ class Stream(Widget):
         return Panel(renderable)
 
     def on_click(self, event: Click) -> None:
-        net.open_stream(self.url)
+        net.open_stream(url=self.url, resolution=self.resolution)
 
 
 class ListStreams(App):
@@ -54,18 +55,20 @@ class ListStreams(App):
 
     def __init__(
         self,
-        org,
+        org: str,
+        resolution: str,
         driver_class: Type[Driver] = None,
         css_path: CSSPathType = "styles.css",
         watch_css: bool = False,
     ):
         self.org = org
+        self.resolution = resolution
         super().__init__(driver_class, css_path, watch_css)
 
     def compose(self) -> ComposeResult:
         holodex_response = net.check_streams(self.org)
         streams = (
-            Stream(stream_info)
+            Stream(stream_info, self.resolution)
             for stream_info in (
                 holodex_response["live"] + holodex_response["upcoming"]
                 if len(holodex_response["live"]) > 0

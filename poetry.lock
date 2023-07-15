@@ -713,6 +713,20 @@ pygments = ">=2.13.0,<3.0.0"
 jupyter = ["ipywidgets (>=7.5.1,<9)"]
 
 [[package]]
+name = "rich-argparse"
+version = "1.2.0"
+description = "Rich help formatters for argparse and optparse"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "rich_argparse-1.2.0-py3-none-any.whl", hash = "sha256:ebd9ca7b418e9aff4a9c502caf9ea24237ad4967c1adfd68a628a4c21d5184f3"},
+    {file = "rich_argparse-1.2.0.tar.gz", hash = "sha256:bf17fe00603ad90dbb94cd3a6a27a3a0051df6b3363fb1b46300398bb83740ea"},
+]
+
+[package.dependencies]
+rich = ">=11.0.0"
+
+[[package]]
 name = "setuptools"
 version = "68.0.0"
 description = "Easily download, build, install, upgrade, and uninstall Python packages"
@@ -890,4 +904,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9, <3.11"
-content-hash = "562562cd0eda3100d9b2f03eb191b07d8ed79e10c52373f7a1e51cfe292c0efc"
+content-hash = "ddb34429544f271f6e6b970bbadaf2e87498e6970831f689b056dc07b629f9e1"

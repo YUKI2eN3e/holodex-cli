@@ -3,12 +3,12 @@ import subprocess as sp
 import requests
 import streamlink
 
-import holodex.net.apikey as apikey
+from holodex_cli.net.apikey import X_APIKEY
 
 
 def check_streams(org):
     api = "https://holodex.net/api/v2/live?org={}".format(org)
-    streams_json = requests.get(api, headers={"X-APIKEY": apikey.X_APIKEY})
+    streams_json = requests.get(api, headers={"X-APIKEY": X_APIKEY})
     live = []
     upcoming = []
     for stream in streams_json.json():
