@@ -28,7 +28,7 @@ pip install dist/LATEST_WHL_FILE.whl
 &#9;<b style="color:DodgerBlue;">-h</b>, <b style="color:DodgerBlue;">--help</b>&#9;&#9;show this help message and exit
 &#9;<b style="color:DodgerBlue;">-g</b>, <b style="color:DodgerBlue;">--group</b> <b style="color:MediumSeaGreen;">GROUP</b>&#9;the VTuber group you want to watch (default: Hololive)
 &#9;<b style="color:DodgerBlue;">-r</b>, <b style="color:DodgerBlue;">--resolution</b> <b style="color:MediumSeaGreen;">RESOLUTION</b>
-&#9;&#9;&#9;&#9;the video resolution to play (default: <b style="color:MediumSeaGreen;">720)</b>
+&#9;&#9;&#9;&#9;the video resolution to play (default: 720)
 &#9;<b style="color:DodgerBlue;">-v</b>, <b style="color:DodgerBlue;">--version</b>&#9;&#9;show program's version number and exit
 </pre>
 
