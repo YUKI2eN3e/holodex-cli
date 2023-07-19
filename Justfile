@@ -1,5 +1,7 @@
 set windows-shell := ["C:\\Program Files\\Git\\bin\\sh.exe", "-c"]
 
+_default: tasks
+
 _setup_poetry:
 	poetry install
 
@@ -19,7 +21,7 @@ sort:
 format:
 	poetry run black .
 
-# Run pre-commit to lint and reformat all files
+# Lint and format all files
 lint:
 	poetry check
 	@just sort
