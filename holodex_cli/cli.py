@@ -16,6 +16,7 @@ def get_args() -> CliArgs:
     module_name = path.basename(path.dirname(__file__))
     prog_name = module_name.split("_")[0]
     default_group = "Hololive"
+    default_resolution = "720"
     parser = argparse.ArgumentParser(prog=prog_name, formatter_class=RichHelpFormatter)
     parser.add_argument(
         "-g",
@@ -24,7 +25,10 @@ def get_args() -> CliArgs:
         default=default_group,
     )
     parser.add_argument(
-        "-r", "--resolution", default="720", help="the video resolution to play"
+        "-r",
+        "--resolution",
+        default=default_resolution,
+        help=f"the video resolution to play (default: {default_resolution})",
     )
     parser.add_argument(
         "-v",

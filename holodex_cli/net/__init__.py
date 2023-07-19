@@ -20,6 +20,7 @@ def check_streams(org):
 
 
 def open_stream(url, resolution="720p"):
+    resolution = f"{resolution}p" if not resolution[0].isalnum() else resolution
     resolutions = streamlink.streams(url)
     if resolution in resolutions.keys():
         sp.run(["ffplay", resolutions[resolution].url, "-fs"], capture_output=True)
