@@ -37,14 +37,20 @@ build: _setup_poetry
 
 # Install program using pipx
 install: build
-	py -m pipx install ./dist/`ls -t dist | head -n2 | grep whl`
+	pipx install ./dist/`ls -t dist | head -n2 | grep whl`
+	mkdir -p ~/.local/holodex-cli
+	cp --update config.toml ~/.local/holodex-cli/config.toml
+
+_uninstall:
+	pipx uninstall holodex-cli
 
 # Uninstall program using pipx
-uninstall:
-	py -m pipx uninstall holodex-cli
+uninstall: _uninstall
+	[ ! -e ~/.local/holodex-cli/config.toml || rm ~/.local/holodex-cli/config.toml ]
+	rmdir ~/.local/holodex-cli 2> /dev/null
 
 # Reinstall program using pipx
-reinstall: uninstall
+reinstall: _uninstall
 	@just install
 
 # Run cli program

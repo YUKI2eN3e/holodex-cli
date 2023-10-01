@@ -5,18 +5,21 @@ A `textual` based interface for `Holodex`
 
 ## Directions
 * Create an API key for your Holodex account.
-* Create a file in ~/.local/holodex-cli dir called config.toml and paste your key into this file as API_KEY:
-```python
+* Create a copy of example-config.toml called config.toml and paste your key into this file as API_KEY:
+```toml
 API_KEY = "YOUR_API_KEY_HERE"
 ```
 * Run:
 ```bash
 just install
 ```
-or
+OR
 ```bash
-just build
-pip install dist/LATEST_WHL_FILE.whl
+poetry install
+poetry build
+pipx install ./dist/`ls -t dist | head -n2 | grep whl`
+mkdir -p ~/.local/holodex-cli
+cp --update config.toml ~/.local/holodex-cli/config.toml
 ```
 
 ## Usage
