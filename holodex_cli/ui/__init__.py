@@ -18,7 +18,10 @@ from holodex_cli.util import time
 class Stream(Widget):
     def __init__(self, stream_info, resolution: str, name: str = None) -> None:
         self.title = stream_info["title"]
-        self.member = stream_info["channel"]["english_name"]
+        try:
+            self.member = stream_info["channel"]["english_name"]
+        except KeyError:
+            self.member = stream_info["channel"]["name"]
         self.topic = str()
         try:
             self.topic = stream_info["topic_id"].title().replace("_", " ")
