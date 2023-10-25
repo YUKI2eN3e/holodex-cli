@@ -37,7 +37,7 @@ build: _setup_poetry
 
 # Install program using pipx
 install: build
-	pipx install ./dist/`ls -t dist | head -n2 | grep whl`
+	py -3.10 -m pipx install ./dist/`ls -t dist | head -n2 | grep whl`
 	mkdir -p ~/.local/holodex-cli
 	cp --update config.toml ~/.local/holodex-cli/config.toml
 
